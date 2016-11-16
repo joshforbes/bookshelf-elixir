@@ -26,6 +26,7 @@ defmodule Bookshelf.ConnCase do
       import Ecto.Query
 
       import Bookshelf.Router.Helpers
+      import Bookshelf.Factory
 
       # The default endpoint for testing
       @endpoint Bookshelf.Endpoint
