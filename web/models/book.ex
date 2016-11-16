@@ -9,4 +9,10 @@ defmodule Bookshelf.Book do
 
     timestamps
   end
+
+  def changeset(book, params \\ %{}) do
+    book
+    |> cast(params, [:name, :author, :cover_path, :file_path])
+    |> validate_required([:name, :author, :file_path])
+  end
 end
