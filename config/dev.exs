@@ -35,8 +35,8 @@ config :phoenix, :stacktrace_depth, 20
 # Configure your database
 config :bookshelf, Bookshelf.Repo,
   adapter: Ecto.Adapters.MySQL,
-  username: "root",
-  password: "",
+  username: "homestead",
+  password: "secret",
   database: "bookshelf_dev",
   hostname: "localhost",
   pool_size: 10
