@@ -12,8 +12,8 @@ config :logger, level: :warn
 # Configure your database
 config :bookshelf, Bookshelf.Repo,
   adapter: Ecto.Adapters.MySQL,
-  username: "root",
-  password: "",
+  username: "homestead",
+  password: "secret",
   database: "bookshelf_test",
   hostname: "localhost",
   pool: Ecto.Adapters.SQL.Sandbox
