@@ -16,7 +16,7 @@ defmodule Bookshelf.Router do
   scope "/", Bookshelf do
     pipe_through :browser # Use the default browser stack
 
-    scope "Books" do
+    scope "/Books" do
       get "/", BookController, :index
     end
   end
