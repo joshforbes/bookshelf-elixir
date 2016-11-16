@@ -9,3 +9,14 @@
 #
 # We recommend using the bang functions (`insert!`, `update!`
 # and so on) as they will fail if something goes wrong.
+
+alias Bookshelf.Repo
+alias Bookshelf.Book
+
+Repo.delete_all(Book)
+Repo.insert!(%Book{
+  title: "Practical Object-Oriented Design in Ruby",
+  author: "Sandi Metz",
+  cover_path: "uploads/covers/1.jpg",
+  file_path: "uploads/files/1.pdf"
+})
