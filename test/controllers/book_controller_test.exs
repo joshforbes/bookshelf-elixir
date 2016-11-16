@@ -5,7 +5,7 @@ defmodule Bookshelf.BookControllerTest do
     conn = build_conn()
     book = insert(:book)
 
-    conn = get conn, todo_path(conn, :index)
+    conn = get conn, book_path(conn, :index)
 
     assert json_response(conn, 200) == %{
       "books" => [%{
