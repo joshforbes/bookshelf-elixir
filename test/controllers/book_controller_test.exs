@@ -10,6 +10,15 @@ defmodule Bookshelf.BookControllerTest do
     assert json_response(conn, 200) == render_json("index.json", books: [book])
   end
 
+  test "#show renders the specified book" do
+      conn = build_conn()
+      book = insert(:book)
+
+      conn = get conn, book_path(conn, :show, book)
+
+      assert json_response(conn, 200) == render_json("show.json", book: book)
+    end
+
   defp render_json(template, assigns) do
       assigns = Map.new(assigns)
 

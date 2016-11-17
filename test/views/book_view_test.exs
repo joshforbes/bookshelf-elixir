@@ -27,4 +27,14 @@ defmodule Bookshelf.BookViewTest do
       books: [BookView.book_json(book)]
     }
   end
+
+  test "show.json" do
+      book = insert(:book)
+
+      rendered_books = BookView.render("show.json", %{book: book})
+
+      assert rendered_books == %{
+        book: BookView.book_json(book)
+      }
+    end
 end

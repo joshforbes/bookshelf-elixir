@@ -7,4 +7,9 @@ defmodule Bookshelf.BookController do
     books = Repo.all(Book)
     render conn, "index.json", books: books
   end
+
+  def show(conn, %{"id" => id}) do
+      book = Repo.get!(Book, id)
+      render conn, "show.json", book: book
+    end
 end

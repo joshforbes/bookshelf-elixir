@@ -18,6 +18,7 @@ defmodule Bookshelf.Router do
 
     scope "/books" do
       get "/", BookController, :index
+      get "/:id", BookController, :show
     end
   end
 
