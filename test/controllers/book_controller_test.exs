@@ -7,15 +7,14 @@ defmodule Bookshelf.BookControllerTest do
 
     conn = get conn, book_path(conn, :index)
 
-    assert json_response(conn, 200) == %{
-      "books" => [%{
-        "title" => book.title,
-        "author" => book.author,
-        "cover_path" => book.cover_path,
-        "file_path" => book.file_path,
-        "inserted_at" => Ecto.DateTime.to_iso8601(book.inserted_at),
-        "updated_at" => Ecto.DateTime.to_iso8601(book.updated_at)
-      }]
-    }
+    assert json_response(conn, 200) == render_json("index.json", books: [book])
   end
+
+  defp render_json(template, assigns) do
+      assigns = Map.new(assigns)
+
+      Bookshelf.BookView.render(template, assigns)
+      |> Poison.encode!
+      |> Poison.decode!
+    end
 end
