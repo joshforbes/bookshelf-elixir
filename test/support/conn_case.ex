@@ -27,6 +27,7 @@ defmodule Bookshelf.ConnCase do
 
       import Bookshelf.Router.Helpers
       import Bookshelf.Factory
+      import Bookshelf.ConnCaseHelper
 
       # The default endpoint for testing
       @endpoint Bookshelf.Endpoint
