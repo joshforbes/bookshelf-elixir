@@ -2,16 +2,14 @@ defmodule Bookshelf.BookView do
   use Bookshelf.Web, :view
 
   def render("index.json", %{books: books}) do
-    %{
-      books: Enum.map(books, &book_json/1)
-    }
+    %{data: render_many(books, Bookshelf.BookView, "book.json")}
   end
 
   def render("show.json", %{book: book}) do
-      %{book: book_json(book)}
+      %{data: render_one(book, Bookshelf.BookView, "book.json")}
     end
   
-  def book_json(book) do
+  def render("book.json", %{book: book}) do
     %{
       title: book.title,
       author: book.author,
