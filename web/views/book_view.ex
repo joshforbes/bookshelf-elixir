@@ -6,8 +6,8 @@ defmodule Bookshelf.BookView do
   end
 
   def render("show.json", %{book: book}) do
-      %{data: render_one(book, Bookshelf.BookView, "book.json")}
-    end
+    %{data: render_one(book, Bookshelf.BookView, "book.json")}
+  end
   
   def render("book.json", %{book: book}) do
     %{
