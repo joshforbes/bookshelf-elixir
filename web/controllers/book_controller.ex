@@ -1,7 +1,7 @@
 defmodule Bookshelf.BookController do
   use Bookshelf.Web, :controller
 
-  alias Bookshelf.Book
+  alias Bookshelf.{Book, ErrorView}
 
   def index(conn, _params) do
     books = Repo.all(Book)
@@ -9,7 +9,8 @@ defmodule Bookshelf.BookController do
   end
 
   def show(conn, %{"id" => id}) do
-      book = Repo.get!(Book, id)
-      render conn, "show.json", book: book
+    case Repo.get(Book, id) do
+      nil -> conn |> put_status(404) |> render(ErrorView, "404.json", message: "Book Not Found")
+      book -> render conn, "show.json", book: book
     end
 end
