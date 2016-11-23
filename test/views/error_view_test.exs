@@ -4,18 +4,18 @@ defmodule Bookshelf.ErrorViewTest do
   # Bring render/3 and render_to_string/3 for testing custom views
   import Phoenix.View
 
-  test "renders 404.html" do
-    assert render_to_string(Bookshelf.ErrorView, "404.html", []) ==
-           "Page not found"
+  test "renders 404.json" do
+    assert Bookshelf.ErrorView.render("404.json", message: "Not Found") ==
+      %{error: "Not Found"}
   end
 
-  test "render 500.html" do
-    assert render_to_string(Bookshelf.ErrorView, "500.html", []) ==
-           "Internal server error"
+  test "render 500.json" do
+    assert Bookshelf.ErrorView.render("500.json") ==
+      %{error: "Internal server error"}
   end
 
   test "render any other" do
-    assert render_to_string(Bookshelf.ErrorView, "505.html", []) ==
-           "Internal server error"
+    assert Bookshelf.ErrorView.render("500.json") ==
+      %{error: "Internal server error"}
   end
 end
