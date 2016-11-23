@@ -1,9 +1,9 @@
 defmodule Bookshelf.BookControllerTest do
   use Bookshelf.ConnCase
 
-  alias Bookshelf.BookView
+  alias Bookshelf.{BookView, ErrorView}
 
-  test "#index renders a list of books" do
+  test "index/2 responds with all Users" do
     conn = build_conn()
     book = insert(:book)
 
@@ -12,7 +12,8 @@ defmodule Bookshelf.BookControllerTest do
     assert json_response(conn, 200) == render_json(BookView, "index.json", books: [book])
   end
 
-  test "#show renders the specified book" do
+  describe "show/2" do
+    test "Responds with a book if the book is found" do
       conn = build_conn()
       book = insert(:book)
 
@@ -20,4 +21,14 @@ defmodule Bookshelf.BookControllerTest do
 
       assert json_response(conn, 200) == render_json(BookView, "show.json", book: book)
     end
+
+    test "Responds with a message indicating book not found" do
+      conn = build_conn()
+
+      conn = get conn, book_path(conn, :show, 999)
+
+      assert json_response(conn, 404) == render_json(ErrorView, "404.json", message: "Book Not Found")
+    end
+  end
+
 end
