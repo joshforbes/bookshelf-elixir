@@ -3,10 +3,10 @@ defmodule Bookshelf.BookViewTest do
   import Bookshelf.Factory
   alias Bookshelf.BookView
 
-  test "book_json" do
+  test "book.json" do
     book = insert(:book)
 
-    rendered_book = BookView.book_json(book)
+    rendered_book = BookView.render("book.json", book: book)
 
     assert rendered_book == %{
       title: book.title,
@@ -24,7 +24,7 @@ defmodule Bookshelf.BookViewTest do
     rendered_books = BookView.render("index.json", books: [book])
 
     assert rendered_books == %{
-      books: [BookView.book_json(book)]
+      data: [BookView.render("book.json", book: book)]
     }
   end
 
@@ -34,7 +34,7 @@ defmodule Bookshelf.BookViewTest do
       rendered_books = BookView.render("show.json", %{book: book})
 
       assert rendered_books == %{
-        book: BookView.book_json(book)
+        data: BookView.render("book.json", book: book)
       }
     end
 end
